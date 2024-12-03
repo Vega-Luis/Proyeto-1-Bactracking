@@ -1,0 +1,135 @@
+def busquedaE(self, solucion):
+        sospechoso=["El/la mejor amigo(a)","El/la novio(a)","El/la vecino(a)",
+             "El mensajero","El extraño","El/la hermanastro(a)","El/la colega de trabajo"]
+        arma=["Pistola","Cuchillo","Machete","Pala","Bate","Botella","Tubo","Cuerda"]
+        motivo=["Venganza","Celos","Dinero","Accidente","Drogas","Robo"]
+        pdc=["Cabeza","Pecho","Abdomen","Espalda","Piernas","Brazos"]
+        lugar=["Sala","Comedor","Baño","Terraza","Cuarto","Garage","Patio","Balcón",
+               "Cocina"]
+        #5
+        
+        categ=[sospechoso,arma,motivo,pdc,lugar]
+        #contiene las cartas de la solución generada
+        sol=solucion
+        #sugerencia del algoritmo
+        sug=[]
+        #contiene las posiciones de un elemento que es restriccion
+        resActivas=[]
+        #4+5
+        if(mostrar==True):
+            self.salida+="Solucion: "+str(sol)+"\n"#4
+            #1+4
+        #4+5+5
+        a=0
+        b=0
+        c=0
+        d=0
+        e=0
+        #19+
+        while(True):
+            sug=[]
+            eliminado=0
+            #21+n*()
+            if(len(categ[0])==a):
+                sug.append(categ[0][a-1])
+            else:
+                sug.append(categ[0][a])
+            if(len(categ[1])==b):
+                sug.append(categ[1][b-1])
+            else:
+                sug.append(categ[1][b])
+            if(len(categ[2])==c):
+                sug.append(categ[2][c-1])
+            else:
+                sug.append(categ[2][c])
+            if(len(categ[3])==d):
+                sug.append(categ[3][d-1])
+            else:
+                sug.append(categ[3][d])
+            if(len(categ[4])==e):
+                sug.append(categ[4][e-1])
+            else:
+                sug.append(categ[4][e])
+            #21+n*(20)
+            if(mostrar==True):
+                self.salida+="Sugerencia: "+str(sug)+"\n"
+            #21+n*(26)
+            if(sug==sol):
+                if(mostrar==True):
+                    self.salida+="Resultado: "+str(sug)+"\n"
+                return 'exito'
+            elif(e<len(categ[4]) and e!=len(categ[4])):
+                eliminado=self.eliminar(categ,sug,sol)#14+3n
+                e+=1
+            elif(d<len(categ[3]) and d!=len(categ[3])):
+                eliminado=self.eliminar(categ,sug,sol)#14+3n
+                e=0
+                d+=1
+            elif(c<len(categ[2]) and c!=len(categ[2])):
+                eliminado=self.eliminar(categ,sug,sol)#14+3n
+                e=0
+                d=0
+                c+=1
+            elif(b<len(categ[1]) and c!=len(categ[1])):
+                eliminado=self.eliminar(categ,sug,sol)#14+3n
+                e=0
+                d=0
+                c=0
+                b+=1
+            elif(a<len(categ[0]) and a!=len(categ[0])):
+                eliminado=self.eliminar(categ,sug,sol)#14+3n
+                e=0
+                d=0
+                c=0
+                b=0
+                a+=1
+                #24+17+3n
+            else:
+                if(mostrar==True):
+                    self.salida+="Fracaso"+"\n"
+                return 'fracaso'
+            #21+n*(26+24+17+3n)
+            if(eliminado==0):
+                if(a>0):
+                    a-=1
+            elif(eliminado==1):
+                if(b>0):
+                    b-=1
+            elif(eliminado==2):
+                if(c>0):
+                    c-=1
+            elif(eliminado==3):
+                if(d>0):
+                    d-=1
+            else:
+                if(e>0):
+                    e-=1
+    #21+n*(26+24+17+3n)
+    #21+67n+3n^2
+    #3n^2
+    
+
+    def eliminar(self, categ, sug, sol):
+        eliminar=0
+        while(True):
+            #1+n*(2+1)
+            eliminar=randrange(5)
+            if not sug[eliminar] in sol:
+                break
+        elemento=sug[eliminar]
+        #2+3n
+        if(mostrar==True):
+            self.salida+="Eliminado: "+str(elemento)+"\n"
+        #8+3n
+        if eliminar==0:
+            categ[0].remove(elemento)
+        elif eliminar==1:
+            categ[1].remove(elemento)
+        elif eliminar==2:
+            categ[2].remove(elemento)
+        elif eliminar==3:
+            categ[3].remove(elemento)
+        else:
+            categ[4].remove(elemento)
+        return eliminar
+        #14+3n
